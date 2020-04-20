@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "624713770984",
+    "firebase_url": "https://rnfcmandroid.firebaseio.com",
+    "project_id": "rnfcmandroid",
+    "storage_bucket": "rnfcmandroid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624713770984:android:8841ffb52807b291ca665d",
+        "android_client_info": {
+          "package_name": "com.rnfcmandroideslintprettiersetup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "624713770984-47ok2340it6u82kncnkftcmuevpe3822.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcLHE77HzK9ixO1LZhlEmoENc-WZVoY64"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "624713770984-47ok2340it6u82kncnkftcmuevpe3822.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

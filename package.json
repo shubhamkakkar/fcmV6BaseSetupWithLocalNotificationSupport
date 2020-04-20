@@ -10,6 +10,8 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-firebase/app": "^6.4.0",
+    "@react-native-firebase/messaging": "^6.4.0",
     "react": "16.11.0",
     "react-native": "0.62.2"
   },
@@ -30,7 +32,11 @@
     "eslint-plugin-react-hooks": "^2.5.1",
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.58.0",
-    "react-test-renderer": "16.11.0"
+    "react-test-renderer": "16.11.0",
+    "@types/node": "^13.7.0",
+    "@types/react": "^16.9.19",
+    "@types/react-native": "^0.61.10",
+    "@types/react-native-push-notification": "^3.0.9"
   },
   "jest": {
     "preset": "react-native"
