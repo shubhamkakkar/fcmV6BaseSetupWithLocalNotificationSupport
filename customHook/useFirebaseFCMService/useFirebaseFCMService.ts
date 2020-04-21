@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
 import messaging from '@react-native-firebase/messaging';
+import { useEffect, useState } from "react";
 export default function useFirebaseFCMService() {
     const [loader, setLoader] = useState<boolean>(true)
     const [fcmToken, setFcmToken] = useState<string>("")
@@ -39,6 +39,9 @@ export default function useFirebaseFCMService() {
         registerAppWithFCM();
         requestUserPermission();
         getToken();
+        messaging.NotificationAndroidPriority.PRIORITY_MAX;
+        messaging.NotificationAndroidVisibility.VISIBILITY_PUBLIC;
+        messaging.AuthorizationStatus.AUTHORIZED;
         onNotificationOpenedApp();
         getInitialNotification();
     }
