@@ -48,6 +48,7 @@ export default function useFirebaseFCMService() {
     useEffect(() => {
         firebaseMessageCalls();
         const unsubscribe = messaging().onMessage(async remoteMessage => {
+            // react native push notification
         });
 
         return () => {
