@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useFirebaseFCMService } from "./customHook"
 
 export default function App() {
-  const { loader, fcmToken } = useFirebaseFCMService();
-  console.log({ fcmToken })
+  const { loader, fcmToken, remoteMessage } = useFirebaseFCMService();
   return (
     <View style={styles.container}>
       <Text>

@@ -16,51 +16,49 @@ export default function useFirebaseFCMService() {
         }
     }
 
-    async function onNotificationOpenedApp() {
-        return await messaging().onNotificationOpenedApp(remoteMessage => remoteMessage)
+    function onNotificationOpenedApp() {
+        messaging().onNotificationOpenedApp(remoteMessage => setRemoteMessage(remoteMessage))
     }
 
-    async function getInitialNotification() {
-        return await messaging()
+    function getInitialNotification() {
+        messaging()
             .getInitialNotification()
-            .then(remoteMessage => {
-                if (remoteMessage) {
-                    return remoteMessage.notification;
-                } else {
-                    return {}
-                }
-            });
+            .then(remoteMessage => setRemoteMessage(remoteMessage));
     }
 
-    function firebaseMessageCalls(): void {
-        registerAppWithFCM();
-        requestUserPermission();
+    function getToken() {
         messaging()
             .getToken()
             .then(token => {
                 setFcmToken(token);
                 setLoader(false)
             });
+    }
+
+    function firebaseMessageCalls(): void {
+        registerAppWithFCM();
+        requestUserPermission();
+        getToken();
         onNotificationOpenedApp();
         getInitialNotification();
     }
-
     useEffect(() => {
         firebaseMessageCalls();
         const unsubscribe = messaging().onMessage(async remoteMessage => {
-            console.log("Foreground")
         });
 
-
-        return () => ({
-            unsubscribe,
-            refreshToken: () => messaging().onTokenRefresh(token => {
+        return () => {
+            messaging().onTokenRefresh(token => {
                 setFcmToken(token);
                 setLoader(false);
-            })
-        })
+            }),
+                unsubscribe
+        };
     }, []);
 
-
-    return { loader, fcmToken }
+    return {
+        loader,
+        fcmToken,
+        remoteMessage
+    }
 }
