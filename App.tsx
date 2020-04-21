@@ -5,9 +5,9 @@ import { useFirebaseFCMService } from "./customHook"
 export default function App() {
 
 
-  const { loader, fcmToken, remoteMessage } = useFirebaseFCMService();
+  const { fcmToken, remoteMessage, rnPushNotification } = useFirebaseFCMService();
 
-  console.log({ fcmToken, remoteMessage })
+  console.log({ fcmToken, remoteMessage, rnPushNotification })
 
   return (
     <View style={styles.container}>

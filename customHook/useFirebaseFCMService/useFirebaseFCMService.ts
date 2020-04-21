@@ -1,9 +1,16 @@
 import messaging from '@react-native-firebase/messaging';
 import { useEffect, useState } from "react";
-export default function useFirebaseFCMService() {
+import useRNPushNotification, { TOnNotificationResponse } from './useRNPushNotification';
+export default function useFirebaseFCMService(): {
+    loader: boolean,
+    fcmToken: string,
+    remoteMessage: any;
+    rnPushNotification: TOnNotificationResponse
+} {
     const [loader, setLoader] = useState<boolean>(true)
     const [fcmToken, setFcmToken] = useState<string>("")
     const [remoteMessage, setRemoteMessage] = useState<any>()
+    const { rnPushNotification, runPushNotification } = useRNPushNotification()
 
     async function registerAppWithFCM() {
         await messaging().registerDeviceForRemoteMessages();
@@ -49,6 +56,10 @@ export default function useFirebaseFCMService() {
         firebaseMessageCalls();
         const unsubscribe = messaging().onMessage(async remoteMessage => {
             // react native push notification
+            runPushNotification(
+                remoteMessage.notification?.title || 'Title',
+                remoteMessage.notification?.body || 'body',
+            );
         });
 
         return () => {
@@ -63,6 +74,7 @@ export default function useFirebaseFCMService() {
     return {
         loader,
         fcmToken,
-        remoteMessage
+        remoteMessage,
+        rnPushNotification
     }
 }
